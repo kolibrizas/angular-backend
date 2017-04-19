@@ -4,11 +4,16 @@ import { SampleComponent } from './sample.component';
 import { SampleDirective } from './sample.directive';
 import { SamplePipe } from './sample.pipe';
 import { SampleService } from './sample.service';
+import { Backend } from './model/backend';
+
 
 export * from './sample.component';
 export * from './sample.directive';
 export * from './sample.pipe';
 export * from './sample.service';
+
+export { Backend } from './model/backend';
+
 
 @NgModule({
   imports: [
@@ -29,7 +34,7 @@ export class SampleModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SampleModule,
-      providers: [SampleService]
+      providers: [SampleService, Backend]
     };
   }
 }

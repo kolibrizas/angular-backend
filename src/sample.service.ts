@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
 export class SampleService {
 
   constructor() {
-    console.log("1 or ?");
+    console.log("sample service");
   }
 }
