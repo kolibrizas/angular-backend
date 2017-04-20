@@ -1,3 +1,4 @@
+/*
 export interface REQUEST {
     route?: string;
     session_id?: string;
@@ -54,9 +55,9 @@ export interface USER_EDITABLE_FIELDS {
 export interface USER_REGISTABLE_FIELDS extends USER_EDITABLE_FIELDS {
     id?: string;
 }
-/**
- * 'user' table data except 'id, 'password'.
- */
+//
+// 'user' table data except 'id, 'password'.
+//
 export interface USER_FIELDS extends USER_EDITABLE_FIELDS {
     idx?: number;
     id?: string;
@@ -79,10 +80,9 @@ export interface USER_SESSION_RESPONSE extends RESPONSE {
 
 
 
-/**
- *
- * This is identical of 'user' table.
- */
+
+// This is identical of 'user' table.
+
 export interface USER extends USER_FIELDS {}; // user data table.
 
 
@@ -172,9 +172,9 @@ export type POST_IDX = FORUM_IDX;
 
 
 
-/**
- * 'FORUM CONFIG' table
- */
+
+ // 'FORUM CONFIG' table
+
 
 export interface CONFIG {
     idx?: number;
@@ -261,9 +261,8 @@ export interface FILE {
 export type FILES = Array<FILE>;
 
 
-/**
- * 'FORUM CATEGORY' table
- */
+// 'FORUM CATEGORY' table
+
 
 export interface CATEGORY {
     idx?: number;
@@ -292,9 +291,9 @@ export type CATEGORY_DELETE_RESPONSE = DELETE_RESPONSE;
 export type CATEGORY_EDIT_RESPONSE = EDIT_RESPONSE;
 
 
-/**
- * 'END OF CATEGORY table
- */
+
+// * 'END OF CATEGORY table
+ 
 
 // POST is the resopnse of POST_GET
 // export type POST = POST_FIELDS;
@@ -375,6 +374,18 @@ export interface USER_EDIT extends REQUEST, USER_EDITABLE_FIELDS {
 }; // to edit user data
 
 
+// */
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -443,7 +454,8 @@ export interface _PASSWORD {
 }
 export interface _PASSWORD_O {
     password?: string;
-}
+};
+
 
 export interface _CONTENT {
     content: string;
@@ -456,6 +468,20 @@ export interface _RESPONSE {
     readonly code: number;
     readonly message?: string;
 };
+
+
+
+export interface _META {
+    [key: string] : string;
+}
+
+export type _META_ARRAY = Array<_META>;
+
+
+export interface _METAS {
+    meta?: _META_ARRAY;
+};
+
 
 
 
@@ -484,6 +510,8 @@ export interface _DELETE_RESPONSE extends _RESPONSE {
         id?: string;
     }
 }; // universal. all kinds of delete response.
+
+
 
 
 
@@ -637,7 +665,7 @@ export interface _USER_COMMON_FIELDS {
     stamp_last_login?: number;
     stamp_registration?: number;
     session_id?: string;
-    meta?: METAS;
+    meta?: _META_ARRAY;
 }
 
 
@@ -886,14 +914,6 @@ export interface _POST_DATA_RESPONSE extends
 ///
 /// Meta
 ///
-
-
-export interface _META {
-    [key: string] : any;
-};
-export interface _METAS {
-    meta?: Array<_META>;
-};
 
 export interface _META_FIELDS {
     idx: number;
