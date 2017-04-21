@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Backend } from './../model/backend';
 import { ERROR_TIMEOUT } from './../model/define';
+
+
+import {
+    _META, _META_CREATE, _META_CREATE_RESPONSE
+} from './../model/interface';
+import {
+    ERROR_MODEL_IDX_IS_EMPTY, RES_ERROR_MODEL_IDX_EMPTY
+} from './../model/define';
+import { Backend } from './../model/backend';
+import { Meta } from './../model/meta';
 
 
 @Injectable()
@@ -8,14 +17,17 @@ export class TestAll {
 
     private count: number = 0;
 
-    constructor( public backend: Backend ) {
+    constructor( public backend: Backend, private meta: Meta ) {
         console.log("TestAll constructor:");
 
     }
 
     run() {
-        this.apiTest(); // api itself.
-        this.serverTest(); // basic server & backend protocol test.
+        this.testApi(); // api itself.
+        this.testServer(); // basic server & backend protocol test.
+
+        this.testMeta();
+
     }
 
 
@@ -36,7 +48,7 @@ export class TestAll {
         console.error( `[${this.count}] ERROR: ${message} - ${this.backend.getErrorString( error )}` );
     }
 
-    apiTest() {
+    testApi() {
         console.log('url:', this.backend.getBackendUrl() );
 
         this.backend.version().subscribe( res => {
@@ -48,7 +60,7 @@ export class TestAll {
 
     }
 
-    serverTest() {
+    testServer() {
         
 
         this.backend.successCall().subscribe( re => {
@@ -116,5 +128,32 @@ export class TestAll {
 
 
 
+    }
+
+
+    testMeta() {
+
+        // error test
+        // expect: error
+        this.meta.create().subscribe( (res: _META_CREATE_RESPONSE) => {
+            this.error( "shoud-be-error", "this must be error" );
+        }, err => {
+            if ( err['code'] == ERROR_MODEL_IDX_IS_EMPTY ) {
+                this.success("model-idx-is-empty");
+            }
+            else this.error("this-must-be-model-idx-empty-error", '');
+        });
+
+
+        // success test
+        // expect: success
+        let req: _META_CREATE = {
+            model: 'test',
+            model_idx: 1,
+            code: 'oo'
+        };
+        this.meta.create( req ).subscribe( (res: _META_CREATE_RESPONSE) => {
+            this.success( req );
+        }, err => this.error( err ) );
     }
 }

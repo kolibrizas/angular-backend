@@ -12,7 +12,6 @@ export const ERROR_WRONG_SESSION_ID_NO_USER_DATA_BY_THAT_SESSION_ID = ERROR_WRON
 export const API_KEY_SESSION_INFO = 'user-session-id';
 
 
-
 /**
  * 
  *      N E W   E R R O R   RESPONSES
@@ -25,3 +24,14 @@ export const RES_ERROR_NO_FILE_SELECTED = { code: ERROR_NO_FILE_SELECTED, messag
 
 export const ERROR_DISCONNECTED = -80011;
 export const RES_ERROR_DISCONNECTED = { code: ERROR_DISCONNECTED, message: 'You have no internet. Please check if you are online.' };
+
+
+
+export const ERROR_MODEL_IS_EMPTY = -4090;
+export const RES_ERROR_MODEL_IS_EMPTY = { code: ERROR_MODEL_IS_EMPTY, message: "model-is-empty" };
+export const ERROR_MODEL_IDX_IS_EMPTY = -4090;
+export const RES_ERROR_MODEL_IDX_EMPTY = { code: ERROR_MODEL_IS_EMPTY, message: "model-idx-empty" };
+export const ERROR_CODE_IS_EMPTY = -4090;
+export const RES_ERROR_MODEL_CODE_EMPTY = { code: ERROR_MODEL_IS_EMPTY, message: "model-code-empty" };
+
+

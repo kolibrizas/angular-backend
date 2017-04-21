@@ -1,21 +1,26 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 // import { SampleComponent } from './sample.component';
 // import { SampleDirective } from './sample.directive';
 // import { SamplePipe } from './sample.pipe';
 // import { SampleService } from './sample.service';
-
-import { Backend } from './model/backend';
-import { TestAll } from './test/test.all';
-
 
 // export * from './sample.component';
 // export * from './sample.directive';
 // export * from './sample.pipe';
 // export * from './sample.service';
 
-export { Backend } from './model/backend';
+
+
+
+import { TestAll } from './test/test.all';
 export { TestAll } from './test/test.all';
+
+import { Backend } from './model/backend';
+export { Backend } from './model/backend';
+import { Meta } from './model/meta';
+export { Meta } from './model/meta';
 
 
 @NgModule({
@@ -38,8 +43,10 @@ export class AngularBackendModule {
     return {
       ngModule: AngularBackendModule,
       providers: [
+        //SampleService
+        TestAll,
         Backend,
-        TestAll
+        Meta
       ]
     };
   }

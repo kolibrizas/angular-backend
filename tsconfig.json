@@ -6,13 +6,13 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "rootDir": "./src",
-    "target": "es5",
     "lib": [
       "es2015",
       "dom"
     ],
     "skipLibCheck": true,
     // Don't auto-discover @types/node, it results in a ///<reference in the .d.ts output
-    "types": []
+    "types": [],
+    "target": "es5"
   }
 }
