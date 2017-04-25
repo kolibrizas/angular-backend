@@ -6,9 +6,9 @@ export * from './interface';
 export * from './define';
 
 @Injectable()
-export class Meta extends Base {
+export class PostConfig extends Base {
     constructor( http: Http ) {
-        super( http, 'meta' );
+        super( http, 'post_config' );
     }
 }
 

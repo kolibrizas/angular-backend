@@ -1,5 +1,6 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/Observable/ErrorObservable';
 
 import { TimeoutError } from 'rxjs/Rx';
 import 'rxjs/add/operator/timeout';
@@ -22,7 +23,7 @@ import {
     RES_ERROR_DISCONNECTED } from './define';
 
 export class Api {
-    private http: Http;
+    public http: Http;
     constructor( http ) {
         this.http = http;
     }
@@ -158,6 +159,16 @@ export class Api {
     }
 
 
+    /**
+     *
+     *
+     *
+     * @param code
+     * @param message
+     */
+    protected error( code, message ) : ErrorObservable {
+         return Observable.throw( this.errorResponse( code, message));
+    }
 
     /**
      *
@@ -198,6 +209,18 @@ export class Api {
         return false;
     }
     
+        /**
+     *
+     * @param res - it can by any interface ( type ) as long as it has res.data.sessoin_id
+     */
+    protected setSessionInfo( res: _USER_SESSION_RESPONSE ) {
+        if ( res === void 0 || res.data === void 0 || res.data.session_id === void 0 ) {
+            // No session_id will be returned if admin edits user info.
+            // alert("CRITICAL ERROR: sessionSessionId() - please report this to admin.");
+            return;
+        }
+        localStorage.setItem( API_KEY_SESSION_INFO, JSON.stringify( res.data ) );
+    }
 
     // getSessionInfo() : SESSION_INFO {
     //     let data = localStorage.getItem( API_KEY_SESSION_INFO );

@@ -6,10 +6,8 @@ export * from './interface';
 export * from './define';
 
 @Injectable()
-export class Meta extends Base {
-    constructor( http: Http ) {
-        super( http, 'meta' );
-    }
+export class PostData extends Base {
+  constructor( http: Http ) {
+    super( http, 'post_data' );
+  }
 }
-
-

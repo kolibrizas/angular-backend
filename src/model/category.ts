@@ -5,11 +5,13 @@ import { Base } from './base';
 export * from './interface';
 export * from './define';
 
+
 @Injectable()
-export class Meta extends Base {
+export class Category extends Base {
     constructor( http: Http ) {
-        super( http, 'meta' );
+        super( http, 'category' );
     }
+
 }
 
 

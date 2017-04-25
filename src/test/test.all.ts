@@ -103,7 +103,7 @@ export class TestAll {
             this.error( re, "This should be timeout error. But success." );
         }, error => {
             if ( error.message == ERROR_TIMEOUT ) {
-                this.success('This should be timeout error. ' + this.backend.getErrorString( error ));
+                this.success('This should be timeout error.' + this.backend.getErrorString( error ));
             }
             else this.error( error, "This is not timeout error. But another error");
         });
@@ -128,6 +128,7 @@ export class TestAll {
 
 
 
+
     }
 
 
@@ -145,7 +146,7 @@ export class TestAll {
         });
 
 
-        // success test
+        // success test`
         // expect: success
         let req: _META_CREATE = {
             model: 'test',

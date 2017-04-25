@@ -602,22 +602,31 @@ export type _UPLOAD = UPLOAD;
 export interface UPLOAD_RESPONSE extends _RESPONSE {
     data: _FILE;
 };
-export type _UPLOAD_RESPONSE = UPLOAD_RESPONSE;
 
+//export type _UPLOAD_RESPONSE = UPLOAD_RESPONSE;
+export interface _UPLOAD_RESPONSE extends UPLOAD_RESPONSE {};
+
+export interface _IMG_SRC {
+    idx: number;
+    width?: number;
+    height?: number;
+    quality?: number;
+    resize?: '' | 'crop'
+}
 
 
 
 /**
  * User primary photo interfaces
  * 
- * @note this is a special delcaration for user primary phto upload since it needs more care.
+ * @note this is a special declaration for user primary phto upload since it needs more care.
  * 
  */
-export interface ANONYMOUS_PRIMARY_PHOTO_UPLOAD extends _REQUEST_O {
+export interface _ANONYMOUS_PRIMARY_PHOTO_UPLOAD extends _REQUEST_O {
     model: 'user';
     code: 'primary_photo';
 }
-export interface PRIMARY_PHOTO_UPLOAD extends ANONYMOUS_PRIMARY_PHOTO_UPLOAD {
+export interface _PRIMARY_PHOTO_UPLOAD extends _ANONYMOUS_PRIMARY_PHOTO_UPLOAD {
     model_idx: number;
     unique: 'Y';
     finish: 'Y';
@@ -679,7 +688,7 @@ export interface _USER_RESPONSE extends
 // to register
 export interface _USER_CREATE extends
     _REQUEST_O,
-    _IDX, _PASSWORD, _USER_COMMON_FIELDS,
+    _ID, _PASSWORD, _USER_COMMON_FIELDS,
     _FILE_HOOKS {};
 export interface _USER_CREATE_RESPONSE extends _USER_CRUD_RESPONSE {};
 
@@ -698,7 +707,12 @@ export interface _USER_DATA_RESPONSE extends
             user: _USER_RESPONSE
         }
     };
-    
+// user logout    
+export interface _USER_LOGOUT extends _REQUEST_O {};            // to log out. use 'RESPONSE' for the response.
+export interface _USER_LOGOUT_RESPONSE extends _REQUEST_O {};
+
+
+
 
 
 
