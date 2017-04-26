@@ -321,7 +321,8 @@ export class Api {
             return 'No error data';
         }
         else if ( error['code'] == void 0 ) {
-            return "No error code";
+            console.log("ERROR: No error code on error: The error is: ", error);
+            return "No error code. 'code' is undefined.";
         }
         else if ( error['message'] == ERROR_JSON_PARSE ) {
           return "ERROR: JSON PARSE ERROR: This may be PHP script error. " + error['message'];
