@@ -312,7 +312,13 @@ export class Api {
     isInternalServerError( obj ) {
         return typeof obj['status'] !== void 0 && obj['status'] == 500;
     }
-    getErrorString( error: any ) {
+
+    /**
+     * 
+     * @param error 
+     */
+    getErrorString( error: Object ) {
+        
         if ( error['status'] !== void 0 && error['status'] ) {
             if ( error['status'] == 500 ) return "500 ( INTERNAL SERVER ERROR ) : It is a server error.";
             else return  "ERROR RESPONSE CODE: " + error['status'];
@@ -321,7 +327,7 @@ export class Api {
             return 'No error data';
         }
         else if ( error['code'] == void 0 ) {
-            console.log("ERROR: No error code on error: The error is: ", error);
+            console.log("api::getErrorString() => ERROR: No error code on error: The error is: ", error);
             return "No error code. 'code' is undefined.";
         }
         else if ( error['message'] == ERROR_JSON_PARSE ) {

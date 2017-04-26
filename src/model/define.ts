@@ -25,6 +25,8 @@ export const RES_ERROR_NO_FILE_SELECTED = { code: ERROR_NO_FILE_SELECTED, messag
 export const ERROR_DISCONNECTED = -80011;
 export const RES_ERROR_DISCONNECTED = { code: ERROR_DISCONNECTED, message: 'You have no internet. Please check if you are online.' };
 
+export const ERROR_REQUIRED_INPUT_IS_MISSING = -40044;
+export const RES_ERROR_REQUIRED_INPUT_IS_MISSING = { code: ERROR_REQUIRED_INPUT_IS_MISSING, message: 'Required variable is missing.' };
 
 
 export const ERROR_MODEL_IS_EMPTY = -4090;

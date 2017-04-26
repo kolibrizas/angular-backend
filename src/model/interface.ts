@@ -589,7 +589,7 @@ export interface _FILES {
 
 
 
-export interface UPLOAD extends _REQUEST_O {
+export interface _UPLOAD extends _REQUEST_O {
     model?: string;
     model_idx?: number;
     code?: string;
@@ -597,14 +597,14 @@ export interface UPLOAD extends _REQUEST_O {
     finish?: string;
 };
 
-export type _UPLOAD = UPLOAD;
+// export type _UPLOAD = UPLOAD;
 
-export interface UPLOAD_RESPONSE extends _RESPONSE {
+export interface _UPLOAD_RESPONSE extends _RESPONSE {
     data: _FILE;
 };
 
 //export type _UPLOAD_RESPONSE = UPLOAD_RESPONSE;
-export interface _UPLOAD_RESPONSE extends UPLOAD_RESPONSE {};
+//export interface _UPLOAD_RESPONSE extends UPLOAD_RESPONSE {};
 
 export interface _IMG_SRC {
     idx: number;
@@ -953,6 +953,11 @@ export interface _META_CREATE_RESPONSE extends _RESPONSE {
     }
 }
 
+export interface _META_DATA_RESPONSE extends _RESPONSE {
+    data: {
+        meta: _META_FIELDS
+    }
+}
 
 export interface _META_LIST_RESPONSE extends _RESPONSE {
     data: {
@@ -962,3 +967,5 @@ export interface _META_LIST_RESPONSE extends _RESPONSE {
         limit: number;
     }
 };
+
+
