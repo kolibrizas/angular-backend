@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thruthesky/angular-backend-alpha"
+    "url": "https://github.com/thruthesky/angular-backend/"
   },
   "author": {
     "name": "JaeHo Song",
@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thruthesky/angular-backend-alpha/issues"
+    "url": "https://github.com/thruthesky/angular-backend/issues"
   },
   "module": "angular-backend.js",
   "typings": "angular-backend.d.ts",
