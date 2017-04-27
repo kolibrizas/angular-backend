@@ -35,6 +35,11 @@ export { PostData } from './model/post-data';
 import { User } from './model/user';
 export { User } from './model/user';
 
+export * from './model/interface';
+export * from './model/define';
+export * from './model/config';
+
+
 @NgModule({
   imports: [
     CommonModule
