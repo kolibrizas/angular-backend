@@ -1,9 +1,13 @@
 {
   "name": "angular-backend",
-  "version": "0.6.7",
+  "version": "0.1.0",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
+    "docs": "npm run docs:build",
+    "docs:build": "compodoc -p tsconfig.json -n angular-backend -d docs --hideGenerator",
+    "docs:serve": "npm run docs:build -- -s",
+    "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
     "test": "tsc && karma start"
   },
@@ -12,7 +16,7 @@
     "url": "https://github.com/thruthesky/angular-backend"
   },
   "author": {
-    "name": "JaeHo Song",
+    "name": "Withcenter",
     "email": "thruthesky@gmail.com"
   },
   "keywords": [
@@ -29,6 +33,7 @@
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@compodoc/compodoc": "^1.0.0-beta.7",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
@@ -56,8 +61,5 @@
   },
   "engines": {
     "node": ">=6.0.0"
-  },
-  "dependencies": {
-    "@angular/http": "^4.0.3"
   }
 }

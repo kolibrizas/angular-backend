@@ -1,12 +1,12 @@
 {
   "name": "angular-backend",
-  "version": "0.6.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thruthesky/angular-backend/"
+    "url": "https://github.com/thruthesky/angular-backend"
   },
   "author": {
-    "name": "JaeHo Song",
+    "name": "Withcenter",
     "email": "thruthesky@gmail.com"
   },
   "keywords": [
