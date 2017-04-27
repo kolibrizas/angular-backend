@@ -70,6 +70,10 @@ export class AngularBackendModule {
         User,
         File,
         ProgressService,
+        PostConfig,
+        PostData,
+        PostComment,
+        Category,
       { provide: BrowserXhr, useClass: CustomBrowserXhr } 
       ]
     };
