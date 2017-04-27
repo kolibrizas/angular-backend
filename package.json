@@ -1,6 +1,6 @@
 {
   "name": "angular-backend",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
