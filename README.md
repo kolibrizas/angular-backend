@@ -6,32 +6,21 @@ Angular Backend 는 [Backend](https://github.com/thruthesky/backend) 를 사용�
 
 # TODO
 
-
-* Create simplest examples of backend API for tutorials with documenting on README
-
-
-# History
-
-## 2016-03-14
-
-* Sample code for admin.
-
-
-## 2016-03-10
-
-* 기본 유닛 테스트 추가
+* Convert old components into https://github.com/thruthesky/angular-backend-components
+* Move admin page into backend itself.
 
 
 
 # Installation
 
 ````
-$ git clone https://github.com/thruthesky/angular-backend
+$ npm install angular-backend
 ````
 
 
 
-# Examples
+# Sample Projects
+
 
 * https://github.com/thruthesky/community-app
 * https://github.com/thruthesky/woman - Favorite functionality.
@@ -46,7 +35,7 @@ $ git clone https://github.com/thruthesky/angular-backend
 app.module.ts)
 
 ````
-	import { AngularBackendModule } from './angular-backend-0.2/angular-backend.module';
+	import { AngularBackendModule } from 'angular-backend';
 
 	imports: [
 		AngularBackendModule
@@ -68,6 +57,11 @@ app.component.ts)
   }
 
 ````
+
+# Sample components based on Angular Backnend
+
+See [Angular Backend Components](https://github.com/thruthesky/angular-backend-components) for code samples of Angular Backend.
+
 
 # Utilities
 

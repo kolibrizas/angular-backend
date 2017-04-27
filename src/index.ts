@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserXhr } from "@angular/http";
 
 // import { SampleComponent } from './sample.component';
 // import { SampleDirective } from './sample.directive';
@@ -34,6 +35,8 @@ import { PostData } from './model/post-data';
 export { PostData } from './model/post-data';
 import { User } from './model/user';
 export { User } from './model/user';
+import { ProgressService } from "./service/progress";
+import { CustomBrowserXhr } from "./service/custom-browser-xhr";
 
 export * from './model/interface';
 export * from './model/define';
@@ -64,7 +67,10 @@ export class AngularBackendModule {
         TestAll,
         Backend,
         Meta,
-        User
+        User,
+        File,
+        ProgressService,
+      { provide: BrowserXhr, useClass: CustomBrowserXhr } 
       ]
     };
   }
