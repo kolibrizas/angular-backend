@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thruthesky/angular-backend-alpha"
+    "url": "https://github.com/thruthesky/angular-backend"
   },
   "author": {
     "name": "JaeHo Song",
@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thruthesky/angular-backend-alpha/issues"
+    "url": "https://github.com/thruthesky/angular-backend/issues"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",
