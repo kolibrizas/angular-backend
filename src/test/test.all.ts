@@ -50,12 +50,10 @@ export class TestAll {
 
     run() {
 
-
-        /// old
         this.testApi(); // api itself.
-        this.testServer(); // basic server & backend protocol test.
-        
-        this.doLogout( () => this.userRegisterGetUpdateLogout() );
+        this.testServer(); // basic server & backend protocol test.     
+        this.doLogout( () => this.userRegisterGetUpdateLogout() ); // try logout first, then do register update logout
+        this.testMeta(); //Test on Meta
             
             
             
@@ -72,7 +70,7 @@ export class TestAll {
         // this.login_session_id.subscribe( session_id => this.testGetUserData( () => this.testUserUpdate() ) );
         //this.update_session_id.subscribe( x => this.logout.next() );
 
-        this.testMeta();
+        
 
     }
 
