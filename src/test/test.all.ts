@@ -3,11 +3,11 @@ import { ERROR_TIMEOUT } from './../model/define';
 import { Subject } from 'rxjs/Subject';
 
 import {
-    _RESPONSE,
+    _RESPONSE, _LIST,
     _USER_CREATE, _USER_CREATE_RESPONSE,
     _USER_EDIT, _USER_EDIT_RESPONSE,
     _USER_LOGIN_RESPONSE, _USER_LOGOUT_RESPONSE,
-    _META, _META_CREATE, _META_CREATE_RESPONSE, _META_DATA_RESPONSE
+    _META, _META_CREATE, _META_CREATE_RESPONSE, _META_DATA_RESPONSE, _META_LIST_RESPONSE
 } from './../model/interface';
 import * as d from './../model/define';
 
@@ -334,16 +334,29 @@ export class TestAll {
              * expect: error
              */
             this.meta.create().subscribe( (res: _META_CREATE_RESPONSE) => {
-                this.error( "shoud-be-error | this must be error" );
+                this.error( "should-be-error | this must be error" );
             }, err => {
                 if ( err['code'] == d.ERROR_REQUIRED_INPUT_IS_MISSING ) {
-                    this.success("user logged out. no session id error.");
+                    this.success("user logged out. no session id error.", this.backend.getErrorString( err ) );
                 }
                 else this.error( err );
             });
+
+            //search test1,1
+            this.meta.list( {where: 'model=?', bind: 'test' } ).subscribe( (res: _META_LIST_RESPONSE) => {
+                console.log('this.meta.list::anonymous', res );
+                this.error( res );
+            }, err => {
+                console.log('this.meta.list::anonymous');
+                this.success( 'not log in', this.backend.getErrorString( err ) );
+            });
+
+
+
         });
 
         this.doRegister( ( req, res ) => {
+
 
             // error test
             // expect: error
@@ -356,20 +369,82 @@ export class TestAll {
                 else this.error( err );
             });
 
-
             // success test`
             // expect: success
-            let meta_req: _META_CREATE = {
-                model: 'test',
+
+            let meta_req: _META_CREATE = <_META_CREATE> {
+                model: 'test1',
                 model_idx: 1,
                 code: 'oo'
             };
             this.meta.create( meta_req ).subscribe( (res: _META_CREATE_RESPONSE) => {
-                this.success( 'this.meta.create( req ) ', res );
-                this.meta.data( res.data.meta.idx ).subscribe( (res: _META_DATA_RESPONSE ) => {
+                this.success( 'this.meta.create( req ) test1 ', res );
 
-                });
-            }, err => this.error( err ) );            
+                // this produce error because data is not part of the route for meta on backend
+                // this.meta.data( res.data.meta.idx ).subscribe( ( res: _META_DATA_RESPONSE ) => {
+                //     this.error( res );
+                // }, err => {
+                //     console.log('this.meta.data::error', err);
+                //     this.success('route-does-not-exists', err);
+                // });
+
+            }, err => this.error( err ) );
+
+
+
+            meta_req['model'] = 'test2';
+            this.meta.create( meta_req ).subscribe( (res: _META_CREATE_RESPONSE) => {
+                this.success( 'this.meta.create( req ) for test2 ', res );
+            }, err => this.error( err ) );
+
+            meta_req['model'] = 'test3';
+            this.meta.create( meta_req ).subscribe( (res: _META_CREATE_RESPONSE) => {
+                this.success( 'this.meta.create( req ) for test3 ', res );
+            }, err => this.error( err ) );
+
+
+            let meta_query: _LIST = <_LIST>{};
+            //query is empty
+            this.meta.list().subscribe( (res: _META_LIST_RESPONSE) => {
+                console.log('this.meta.list::empty', res);
+                this.error( res );
+            }, err => {
+                console.log('this.meta.list::empty');
+                this.success('required-variable-is-missing where', err );
+            });
+
+            //error since binding is missing
+            meta_query['where'] = 'model=? AND model_idx=?';
+            this.meta.list( meta_query ).subscribe( ( res: _META_LIST_RESPONSE) => {
+                console.log('this.meta.list::where', res );
+                this.error( res );
+            }, err => {
+                console.log('this.meta.list::where');
+                this.success('binding is missing', err );
+            });
+
+
+            //search test1,1
+            meta_query['bind'] = 'test1,1';
+            this.meta.list( meta_query ).subscribe( (res: _META_LIST_RESPONSE) => {
+                console.log('this.meta.list::where&bind', res );
+                this.success('meta.list test1,1', res );
+            }, err => {
+                console.log('this.meta.list::where&bind');
+                this.error( err );
+            });
+
+
+            //search all test '%test%,1'
+            meta_query['where'] = 'model LIKE ? AND model_idx=?';
+            meta_query['bind'] = '%test%,1';
+            this.meta.list( meta_query ).subscribe( (res: _META_LIST_RESPONSE) => {
+                console.log('this.meta.list::%test%', res );
+                this.success('meta.list test1,1', res );
+            }, err => {
+                console.log('this.meta.list::%test%');
+                this.error( err );
+            });
 
         });
 
