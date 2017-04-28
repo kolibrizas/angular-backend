@@ -12,7 +12,6 @@ import {
     _USER_SESSION_RESPONSE } from './interface';
 
 import {
-    URL_BACKEND_API,
     BACKEND_API_CONNECTION_TIMEOUT } from './config';
 
 import {
