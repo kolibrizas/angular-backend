@@ -40,7 +40,6 @@ import { CustomBrowserXhr } from "./service/custom-browser-xhr";
 
 
 
-
 export * from './model/interface';
 export * from './model/define';
 export * from './model/config';
