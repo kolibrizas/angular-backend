@@ -345,10 +345,11 @@ export class TestAll {
             //search test1,1
             this.meta.list( {where: 'model=?', bind: 'test' } ).subscribe( (res: _META_LIST_RESPONSE) => {
                 console.log('this.meta.list::anonymous', res );
-                this.error( res );
+                if(res.data.total == 0 ) this.success( '0 data for anonymous', res  );
+                else this.error( res, '0 data for anonymous');
             }, err => {
                 console.log('this.meta.list::anonymous');
-                this.success( 'not log in', this.backend.getErrorString( err ) );
+                this.error( err );
             });
 
 
@@ -360,7 +361,7 @@ export class TestAll {
 
             // error test
             // expect: error
-            this.meta.create().subscribe( (res: _META_CREATE_RESPONSE) => {
+            this.meta.create().subscribe( ( res: _META_CREATE_RESPONSE) => {
                 this.error( "shoud-be-error | this must be error" );
             }, err => {
                 if ( err['code'] == d.ERROR_MODEL_IDX_IS_EMPTY ) {
