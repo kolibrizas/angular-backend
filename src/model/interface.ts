@@ -378,9 +378,11 @@ export interface _POST_COMMON_WRITE_FIELDS {
     secret?: string;
 }
 
+
+
 export interface _POST_COMMON_READ_FIELDS {
     title: string;                  // this is changable.
-    readonly content: string;
+    content: string;
     readonly name: string;
     readonly password: string;
     readonly first_image_idx: number;
@@ -399,9 +401,13 @@ export interface _POST_COMMON_READ_FIELDS {
     readonly mobile: string;
     readonly province: string;
     readonly secret: string;
+    readonly deleted: number;                // can not be updated.
+
     report: number;             // editable to display
     vote_good: number;          // this can be changed upon user 'like' click
     vote_bad: number;          // this can be changed upon user 'dislike' click
+
+
 }
 
 
@@ -424,6 +430,7 @@ export interface _COMMENT_COMMON_READ_FIELDS {
     report: number;             // editable to display
     vote_good: number;          // this can be changed upon user 'like' click
     vote_bad: number;          // this can be changed upon user 'dislike' click
+    readonly depth: number;
 }
 export interface _POST extends
     _IDX,
@@ -488,6 +495,7 @@ export interface _POST_LIST_RESPONSE extends _RESPONSE {
 export interface _COMMENT_CREATE extends
     _REQUEST_O,
     _PARENT_IDX,
+    _PASSWORD_O,
     _CONTENT,
     _FILE_HOOKS {};
 export interface _COMMENT_CREATE_RESPONSE extends
@@ -498,6 +506,7 @@ export interface _COMMENT_CREATE_RESPONSE extends
 export interface _COMMENT_EDIT extends
     _REQUEST_O,
     _IDX,
+    _PASSWORD_O,
     _CONTENT,
     _FILE_HOOKS {};
 export interface _COMMENT_EDIT_RESPONSE extends

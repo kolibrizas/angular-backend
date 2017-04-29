@@ -77,20 +77,27 @@ export class Base extends Api {
   /**
    * 
    * 
-   * @note It does forcing type match.
-   * @param idx 
+   * @note 
+   * 
+   * @param what - can be an ID or IDX an Object.
+   * 
    */
-  delete( idx: any ) : Observable<_DELETE_RESPONSE> {
-    let req: _DELETE_REQUEST = {
-      route: this.taxonomy + '.delete'
-    }
-    
-    /// bug fix: if idx is numeric, then it is a number.
-    let no = parseInt( idx );
-    if ( Number.isInteger( no ) ) req.idx = idx;
-    else req.id = idx;
+  delete( what: any ) : Observable<_DELETE_RESPONSE> {
+    let req = {};
 
-    return <Observable<_DELETE_RESPONSE>><any>this.post(req);
+    if ( typeof what == 'string' ) {
+      if ( /^\d+$/.test( what ) ) req['idx'] = parseInt( what );
+      else req['id'] = what;
+    }
+    else if ( typeof what == 'number' ) {
+      req['idx'] = what;
+    }
+    else {
+      req = Object.assign( {}, what );
+    }
+    req['route'] = this.taxonomy + '.delete';
+
+    return <Observable<_DELETE_RESPONSE>><any>this.post(req); // for typing.
   }
 
   edit( req = {} ): Observable<any> {
