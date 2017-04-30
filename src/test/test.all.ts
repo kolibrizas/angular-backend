@@ -362,7 +362,7 @@ export class TestAll {
             // error test
             // expect: error
             this.meta.create().subscribe( ( res: _META_CREATE_RESPONSE) => {
-                this.error( "shoud-be-error | this must be error" );
+                this.error( "should-be-error | this must be error" );
             }, err => {
                 if ( err['code'] == d.ERROR_MODEL_IDX_IS_EMPTY ) {
                     this.success("model-idx-is-empty");
@@ -398,10 +398,12 @@ export class TestAll {
                 this.success( 'this.meta.create( req ) for test2 ', res );
             }, err => this.error( err ) );
 
+            //multi metas
             meta_req['model'] = 'test3';
             this.meta.create( meta_req ).subscribe( (res: _META_CREATE_RESPONSE) => {
                 this.success( 'this.meta.create( req ) for test3 ', res );
             }, err => this.error( err ) );
+
 
 
             let meta_query: _LIST = <_LIST>{};
@@ -446,6 +448,9 @@ export class TestAll {
                 console.log('this.meta.list::%test%');
                 this.error( err );
             });
+
+
+
 
         });
 
