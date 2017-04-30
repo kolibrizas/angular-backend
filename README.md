@@ -247,6 +247,22 @@ Below will show 'forum id' and 'content' input.
 ````
 
 
+# How to check password of post/comment
+
+* You would need to to edit anonymous post/comment. Before showing edit form, you may first check if the password is correct.
+
+
+````
+    onClickEdit() {
+        let password = prompt("Input Password");
+        let req: _POST_EDIT = {idx: this.post.idx, password: password};
+        this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
+            // password match
+            console.log("res: ", res);
+            this.showPostEditForm = true;
+        }, e => this.postData.alert( e ) );
+    }
+````
 
 
 

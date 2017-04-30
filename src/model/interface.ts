@@ -49,6 +49,10 @@ export interface _PASSWORD_O {
 export interface _CONTENT {
     content: string;
 }
+export interface _CONTENT_O {
+    content?: string;
+}
+
 export interface _REQUEST_O {
     route?: string;
     session_id?: string;
@@ -340,7 +344,7 @@ export interface _CONFIG_COMMON_READ_FIELDS {
     readonly level_view: number;
     readonly level_write: number;
     readonly level_comment: number;
-    readonly deleted: string;
+    deleted: number;
 }
 
 
@@ -401,7 +405,7 @@ export interface _POST_COMMON_READ_FIELDS {
     readonly mobile: string;
     readonly province: string;
     readonly secret: string;
-    readonly deleted: number;                // can not be updated.
+    deleted: number;                // can be changed
 
     report: number;             // editable to display
     vote_good: number;          // this can be changed upon user 'like' click
@@ -411,8 +415,9 @@ export interface _POST_COMMON_READ_FIELDS {
 }
 
 
+
 export interface _COMMENT_COMMON_READ_FIELDS {
-    readonly content: string;
+    content: string;
     readonly name: string;
     readonly password: string;
     readonly address: string;
@@ -431,6 +436,7 @@ export interface _COMMENT_COMMON_READ_FIELDS {
     vote_good: number;          // this can be changed upon user 'like' click
     vote_bad: number;          // this can be changed upon user 'dislike' click
     readonly depth: number;
+    deleted: number;                // can be changed
 }
 export interface _POST extends
     _IDX,
@@ -507,7 +513,7 @@ export interface _COMMENT_EDIT extends
     _REQUEST_O,
     _IDX,
     _PASSWORD_O,
-    _CONTENT,
+    _CONTENT_O,
     _FILE_HOOKS {};
 export interface _COMMENT_EDIT_RESPONSE extends
     _RESPONSE,
