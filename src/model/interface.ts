@@ -545,7 +545,7 @@ export interface _META_FIELDS {
 export interface _META_CREATE extends _REQUEST_O {
     model: string;
     model_idx: number;
-    code: string;
+    code: any;
     data?: string;
 }
 
