@@ -28,7 +28,16 @@ $ npm install angular-backend
 
 
 
-# How To Use (사용법)
+# How To Use
+
+## Sample app
+
+* [Angular Backend Components](https://github.com/thruthesky/angular-backend-components)
+* [Angular Backend Community App](https://github.com/thruthesky/angular-backend-community-app-basic)
+
+
+## How to apply to Angular project.
+
 
 먼저 angular-backend-0.2 폴더에 있는 모듈을 사용 할 수 있도록 적절하게 import 한다.
 
