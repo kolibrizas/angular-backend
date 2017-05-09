@@ -355,6 +355,18 @@ export interface _CONFIG_READ extends _CONFIG_COMMON_READ_FIELDS {};
 export type _CONFIG = _CONFIG_COMMON_READ_FIELDS;
 export type _CONFIGS = Array< _CONFIG >;
 
+export interface _CONFIGS_RESPONSE extends _RESPONSE {
+    data: {
+        configs: _CONFIGS
+    }
+};                     // to receive a complete forum config fields. Use this after create/update/get/delete a forum
+
+export interface _CONFIG_RESPONSE extends _RESPONSE {
+    data: {
+        config: _CONFIG
+    }
+};
+
 export interface _POST_CONFIG_ID {
     post_config_id: string;
 };
