@@ -36,8 +36,9 @@ export { PostData } from './model/post-data';
 import { User } from './model/user';
 export { User } from './model/user';
 import { ProgressService } from "./service/progress";
+export { ProgressService } from "./service/progress";
 import { CustomBrowserXhr } from "./service/custom-browser-xhr";
-
+export { CustomBrowserXhr } from "./service/custom-browser-xhr";
 
 
 export * from './model/interface';
