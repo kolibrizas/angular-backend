@@ -149,6 +149,14 @@ export type _USER_PASSWORD_CHANGE_RESPONSE = _USER_SESSION_RESPONSE;            
 
 
 
+export interface _USER_LIST_RESPONSE extends _RESPONSE {                       // array of users for user.list request
+    data: {
+        users: Array<_USER_RESPONSE>
+        total?: string;
+        limit?: string;
+        page?: string;
+    }
+};
 
 
 
@@ -287,7 +295,8 @@ export interface _USER_CREATE_RESPONSE extends _USER_CRUD_RESPONSE {};
 
 export interface _USER_EDIT extends
     _REQUEST_O,
-    _IDX,
+    _IDX_O,
+    _ID_O,
     _PRIMARY_PHOTO,
     _USER_COMMON_FIELDS {};
 export interface _USER_EDIT_RESPONSE extends _USER_CRUD_RESPONSE {};
@@ -334,7 +343,6 @@ export interface _CONFIG_COMMON_WRITE_FIELDS {
 
 export interface _CONFIG_COMMON_READ_FIELDS {
     readonly idx: number;
-    readonly created: string;
     readonly updated: number;
     readonly id: string;
     readonly name: string;
@@ -344,6 +352,7 @@ export interface _CONFIG_COMMON_READ_FIELDS {
     readonly level_view: number;
     readonly level_write: number;
     readonly level_comment: number;
+    created: string;
     deleted: number;
 }
 
@@ -351,6 +360,14 @@ export interface _CONFIG_COMMON_READ_FIELDS {
 export interface _CONFIG_CREATE extends _ID, _CONFIG_COMMON_WRITE_FIELDS {};
 export interface _CONFIG_EDIT extends _IDX, _CONFIG_COMMON_WRITE_FIELDS {};
 export interface _CONFIG_READ extends _CONFIG_COMMON_READ_FIELDS {};
+
+export interface _CONFIG_CREATE_RESPONSE extends _RESPONSE {
+    data: {
+        idx: number;
+    }
+}
+export interface _CONFIG_EDIT_RESPONSE extends _USER_CRUD_RESPONSE {};
+
 
 export type _CONFIG = _CONFIG_COMMON_READ_FIELDS;
 export type _CONFIGS = Array< _CONFIG >;
