@@ -282,6 +282,8 @@ You can adjust it in angular-backend/config.ts
 Or you can adjust it in application code.
 
 
+
+
 ````
 export class HomePage {
     constructor() {
@@ -349,4 +351,22 @@ export class HomePage {
         return this.favorites.find( (m: _META_FIELDS) => m.model_idx == post.idx );
     }
 ````
-"." 
+
+
+
+
+
+
+# Tips
+
+## User login
+
+Some times, you may need to force a user login when the user has already logged in.
+
+You can make the user logout first and then login.
+
+````
+// logout first before login
+this.user.logout();
+this.user.login({ id: id, password: id }).subscribe(success, fail);
+````
