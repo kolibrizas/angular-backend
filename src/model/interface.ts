@@ -358,7 +358,7 @@ export interface _CONFIG_COMMON_READ_FIELDS {
 
 
 export interface _CONFIG_CREATE extends _ID, _CONFIG_COMMON_WRITE_FIELDS {};
-export interface _CONFIG_EDIT extends _IDX, _CONFIG_COMMON_WRITE_FIELDS {};
+export interface _CONFIG_EDIT extends _IDX_O,_ID_O, _CONFIG_COMMON_WRITE_FIELDS {};
 export interface _CONFIG_READ extends _CONFIG_COMMON_READ_FIELDS {};
 
 export interface _CONFIG_CREATE_RESPONSE extends _RESPONSE {
@@ -519,9 +519,9 @@ export interface _POST_LIST_RESPONSE extends _RESPONSE {
     data: {
         configs: _CONFIGS;
         posts: _POSTS;
-        total: number;
-        page: number;
-        limit: number;
+        total: string;
+        page: string;
+        limit: string;
         post_config_id: string;
     }
 };
