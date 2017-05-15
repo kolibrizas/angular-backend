@@ -152,9 +152,9 @@ export type _USER_PASSWORD_CHANGE_RESPONSE = _USER_SESSION_RESPONSE;            
 export interface _USER_LIST_RESPONSE extends _RESPONSE {                       // array of users for user.list request
     data: {
         users: Array<_USER_RESPONSE>
-        total?: string;
-        limit?: string;
-        page?: string;
+        total?: number;
+        limit?: number;
+        page?: number;
     }
 };
 
@@ -435,7 +435,6 @@ export interface _POST_COMMON_READ_FIELDS {
     readonly province: string;
     readonly secret: string;
     deleted: number;                // can be changed
-
     report: number;             // editable to display
     vote_good: number;          // this can be changed upon user 'like' click
     vote_bad: number;          // this can be changed upon user 'dislike' click
@@ -519,9 +518,9 @@ export interface _POST_LIST_RESPONSE extends _RESPONSE {
     data: {
         configs: _CONFIGS;
         posts: _POSTS;
-        total: string;
-        page: string;
-        limit: string;
+        total: number;
+        page: number;
+        limit: number;
         post_config_id: string;
     }
 };
