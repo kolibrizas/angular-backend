@@ -10,7 +10,7 @@ import {
     _USER_EDIT, _USER_EDIT_RESPONSE,
     _USER_DATA_RESPONSE,
     _USER_LOGIN, _USER_LOGIN_RESPONSE, _USER_LOGOUT, _USER_LOGOUT_RESPONSE,
-    _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE
+    _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE, _ID_O
 
 } from './interface';
 // import { KEY_SESSION_ID } from './defines';
@@ -58,7 +58,7 @@ export class User extends Base {
      * @endcode
      */
 
-    data( id? ) : Observable<_USER_DATA_RESPONSE> {
+    data( id?: _ID_O ) : Observable<_USER_DATA_RESPONSE> {
 
         // if id is empty, it will get self data.
         // if ( id === void 0 ) id = this.info.id;
