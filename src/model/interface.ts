@@ -145,6 +145,13 @@ export interface _USER_PASSWORD_CHANGE extends
         old_password: string;
         new_password: string;
     };
+
+export interface _USER_PASSWORD_CHANGE_BY_ADMIN extends
+    _REQUEST_O {
+    user_idx: string;
+    new_password: string;
+};
+
 export type _USER_PASSWORD_CHANGE_RESPONSE = _USER_SESSION_RESPONSE;              // to get response of password change
 
 

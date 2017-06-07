@@ -27,10 +27,12 @@
     "url": "https://github.com/thruthesky/angular-backend/issues"
   },
   "devDependencies": {
+    "@angular/cli": "^1.1.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
+    "@angular/http": "^4.1.3",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@compodoc/compodoc": "^1.0.0-beta.7",

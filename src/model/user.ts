@@ -10,7 +10,8 @@ import {
     _USER_EDIT, _USER_EDIT_RESPONSE,
     _USER_DATA_RESPONSE,
     _USER_LOGIN, _USER_LOGIN_RESPONSE, _USER_LOGOUT, _USER_LOGOUT_RESPONSE,
-    _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE, _ID_O
+    _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE, _ID_O,
+    _USER_PASSWORD_CHANGE_BY_ADMIN
 
 } from './interface';
 // import { KEY_SESSION_ID } from './defines';
@@ -118,5 +119,12 @@ export class User extends Base {
         });
     }
 
-
+    updatePassword( req: _USER_PASSWORD_CHANGE_BY_ADMIN ) : Observable<_USER_PASSWORD_CHANGE_RESPONSE> {
+        req.route = 'admin_change_user_password';
+        return this.post( req )
+            .map( (res: any) => {
+                this.deleteSessionInfo();
+                return res;
+            });
+    }
 }
