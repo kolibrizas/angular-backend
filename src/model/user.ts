@@ -49,12 +49,12 @@ export class User extends Base {
                 classid: 'my-skype-id'
             }
         }
-        console.log(req);
+        //console.log(req);
         this.user.register( req, ( res: USER_REGISTER_RESPONSE_DATA ) => {
-            console.info('register success: ', res);
+            //console.info('register success: ', res);
         },
         error => alert(error),
-        () => console.log('user registration complete') );
+        () => //console.log('user registration complete') );
 
      * @endcode
      */
@@ -79,7 +79,7 @@ export class User extends Base {
     }
 
     edit( req: _USER_EDIT ) : Observable<_USER_EDIT_RESPONSE> {
-      console.log('edit::req', req);
+      //console.log('edit::req', req);
         if ( this.logged == false ) return this.error( -421, 'login-first-before-edit');
         // if ( req['id'] !== void 0 ) return this.error( -422, 'id-has-passed-over-form-submission--user-cannot-edit-id') );
         if ( req['password'] !== void 0 ) return this.error( -423, 'password-has-passed-over-form-submission--user-cannot-edit-password-on-edit-form');

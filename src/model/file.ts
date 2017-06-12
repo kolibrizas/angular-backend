@@ -46,19 +46,19 @@ export class File extends Base {
     if ( req['finish'] ) formData.append( 'finish', req.finish );
     
 
-    console.log( file );
-    console.log( formData ) ;
+    //console.log( file );
+    //console.log( formData ) ;
     let o: Observable<any> = this.http.post( this.getBackendUrl(), formData );
 
 
 
 
     let subscription = this.progress.uploadProgress.subscribe( res => {
-      // console.log("progress: ", res);
-      // console.log('total::', res.total, 'Loaded::', res.loaded);
+      //console.log("progress: ", res);
+      //console.log('total::', res.total, 'Loaded::', res.loaded);
       this.percentage = Math.round(res.loaded/res.total*100);
-      // console.log('this.percentage::',this.percentage);
-      // console.log(subscription);
+      //console.log('this.percentage::',this.percentage);
+      //console.log(subscription);
 
 
       if ( callback ) callback( this.percentage );
@@ -81,7 +81,7 @@ export class File extends Base {
     if ( option['height'] ) url += 'height=' + option.height;
     if ( option['quality'] ) url += 'quality=' + option.quality;
     if ( option['resize'] ) url += 'resize=' + option.resize;
-    console.log('file.src() returns: ', url);
+    //console.log('file.src() returns: ', url);
     return url;
   }
 
@@ -104,12 +104,12 @@ export class File extends Base {
       unique: 'Y',
       finish: 'Y'
     };
-    console.log("uploadUserPrimaryPhoto : ", req);
+    //console.log("uploadUserPrimaryPhoto : ", req);
     return this.upload( req, file, callback );
   }
   
   uploadPrimaryPhoto( file, callback?: CALLBACK_NUMBER ) {
-    console.log("uploadPrimaryPhoto: ");
+    //console.log("uploadPrimaryPhoto: ");
     if ( this.logged ) return this.uploadUserPrimaryPhoto( file, callback );
     else return this.uploadAnonymousPrimaryPhoto( file, callback );
   }
@@ -129,12 +129,12 @@ export class File extends Base {
 
     onChangeFile( _ ) {
         this.file.uploadPostFile( _.files[0], percentage => {
-            console.log('percentage:', percentage);
+            //console.log('percentage:', percentage);
         } ).subscribe( (res:_UPLOAD_RESPONSE) => {
             this.files.push( res.data );
-            console.log('files: ', this.files);
+            //console.log('files: ', this.files);
         }, err => {
-            console.log('err:', err);
+            //console.log('err:', err);
             if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
             this.file.alert(err);
         });

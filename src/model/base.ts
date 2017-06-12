@@ -29,9 +29,9 @@ export class Base extends Api {
      * @code example code.
         this.config.list( {} ).subscribe( res => {
           
-            console.log(res);
+            //console.log(res);
         }, err => {
-            console.log(err);
+            //console.log(err);
         });
         
      *

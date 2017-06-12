@@ -61,19 +61,19 @@ export class Api {
     post( data: any, option = {} ) : Observable<Response> {
 
         let session_id = this.getSessionId();
-        console.log('post session_id: ', session_id);
+        //console.log('post session_id: ', session_id);
         if ( session_id ) {
             data['session_id'] = session_id;
         }
         else {
-            console.log("session id is undefiend. so, it not set.");
-            console.log( data );
+            //console.log("session id is undefiend. so, it not set.");
+            //console.log( data );
         }
 
         data = this.buildQuery( data );
 
         let url = this.getBackendUrl() + '?' + data;
-        console.log("post: ", url); // debug in console
+        //console.log("post: ", url); // debug in console
 
         let o = this.http.post( this.getBackendUrl(), data, this.requestOptions )
         return this.processQuery( o, option );
@@ -130,12 +130,12 @@ export class Api {
             })
             .map( (e) => {
                 ///
-                // console.log('response body:', e['_body']); // debug. comment out to see errors from server.
+                //console.log('response body:', e['_body']); // debug. comment out to see errors from server.
                 
                 if ( e['_body'] == '' ) throw this.errorResponse( -408, 'response-is-empty.');
                 if ( (<string>e['_body']).charAt(0) != '{' ) {
-                    console.info("Maybe error");
-                    console.log(e['_body']);
+                    //console.info("Maybe error");
+                    //console.log(e['_body']);
                 }
                 let re = e.json();
                 if ( this.isError( re ) ) {
@@ -144,9 +144,9 @@ export class Api {
                 else return re;
              } )
             .catch( err => {
-                console.log('Api::processQuery(): caught an error: ', err);
+                //console.log('Api::processQuery(): caught an error: ', err);
                 if ( err instanceof SyntaxError ) {
-                    console.error(err); // debug
+                    //console.error(err); // debug
                     return Observable.throw( this.errorResponse( ERROR_JSON_PARSE )  ); // JSON 에러
                 }
                 else if ( err && err['code'] !== void 0 && err['code'] < 0 ) return Observable.throw( err ); // 프로그램 적 에러
@@ -239,7 +239,7 @@ export class Api {
     getSessionId() : string {
         return this.info.session_id;
         // let info = this.getSessionInfo();
-        // // console.info(info);
+        // //console.info(info);
         // if ( info ) return info.session_id;
         // // return localStorage.getItem( API_KEY_SESSION_INFO );
         // else return null;
@@ -326,7 +326,7 @@ export class Api {
             return 'No error data';
         }
         else if ( error['code'] == void 0 ) {
-            console.log("api::getErrorString() => ERROR: No error code on error: The error is: ", error);
+            //console.log("api::getErrorString() => ERROR: No error code on error: The error is: ", error);
             return "No error code. 'code' is undefined.";
         }
         else if ( error['message'] == ERROR_JSON_PARSE ) {

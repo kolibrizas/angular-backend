@@ -6,6 +6,6 @@ import { Base } from './base';
 export class Backend extends Base {
     constructor( http: Http ) {
         super( http, '' );
-        console.log("Backend constructor:");
+        //console.log("Backend constructor:");
     }
 }

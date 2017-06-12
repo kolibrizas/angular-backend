@@ -50,7 +50,7 @@ export class TestAll {
         private user: User,
         private postConfig: PostConfig
     ) {
-        console.log("TestAll constructor:");
+        //console.log("TestAll constructor:");
 
     }
 
@@ -119,7 +119,7 @@ export class TestAll {
 
 
     doLogout( callback? ) {
-        console.log("doLogout() begin");
+        //console.log("doLogout() begin");
         if ( this.user.logged ) {
             this.user.logout().subscribe( (res: _USER_LOGOUT_RESPONSE ) => {
                 this.success("logout() : ", res);
@@ -149,7 +149,7 @@ export class TestAll {
             this.success("User registration:\n " + res.data.session_id );
             callback( req, res );
         }, error => {
-            console.log("ERROR: doRegister()");
+            //console.log("ERROR: doRegister()");
             this.error( error );
         } );
     }
@@ -161,7 +161,7 @@ export class TestAll {
             /// this.login_session_id.next(res.data.session_id);
             callback( res );
         }, error => {
-            console.log("doLogin() => login failed.");
+            //console.log("doLogin() => login failed.");
             this.error( error );
         });
     }
@@ -170,7 +170,7 @@ export class TestAll {
     doGetUserData( callback ) {
         this.user.data().subscribe( ( res: any ) => {
             this.success( "User Get Data: ");
-            console.log(res['data']['user']);
+            //console.log(res['data']['user']);
             callback();
         }, error => {
             this.error( "getUserData() : error : " + error);
@@ -193,7 +193,7 @@ export class TestAll {
 
     success( str, ...vars ) {
         this.count ++;
-        console.info(`[${this.count}] SUCCESS: ${str}`, vars);
+        //console.info(`[${this.count}] SUCCESS: ${str}`, vars);
     }
 
 
@@ -209,11 +209,11 @@ export class TestAll {
     error( error: Object, message = '' ) {
         this.count ++;
         let error_string = this.getErrorString( error );
-        console.error( `[${this.count}] ERROR: ${ message } - ${ error_string }` );
+        //console.error( `[${this.count}] ERROR: ${ message } - ${ error_string }` );
     }
 
     testApi() {
-        console.log('url:', this.backend.getBackendUrl() );
+        //console.log('url:', this.backend.getBackendUrl() );
 
         this.backend.version().subscribe( res => {
             this.success(`version check: ${res['data'].version}`);
@@ -246,7 +246,7 @@ export class TestAll {
         // this.backend.internalServerError().subscribe( re => {
         //     this.error("This must be 500 internal server error. but success");
         // }, error => {
-        //     console.log(error);
+        //     //console.log(error);
         //     if ( this.backend.isInternalServerError( error ) ) this.success("Internal Server Error: " + this.backend.getErrorString(error) );
         //     else this.error(error, "This must be 500 - internal server error. but it is another error.");
         // });
@@ -254,10 +254,10 @@ export class TestAll {
 
         // setTimeout( () => {
         //     this.backend.scriptError().subscribe( re => {
-        //         console.log(re);
+        //         //console.log(re);
         //         this.error( re, "scriptError() - This should be script error. But success." );
         //     }, error => {
-        //         console.log( error );
+        //         //console.log( error );
         //         this.success( 'This should be script error. This is PHP script error.' );
         //     });
         // }, 100 );
@@ -330,7 +330,7 @@ export class TestAll {
     // testGetUserData( callback ) {
     //     this.user.data().subscribe( ( res: any ) => {
     //         this.success( "User Get Data: ");
-    //         console.log(res['data']['user']);
+    //         //console.log(res['data']['user']);
     //         callback();
     //     }, error => {
     //         this.error( "getUserData() : error : " + error);
@@ -377,11 +377,11 @@ export class TestAll {
 
         //search test1,1
         this.meta.list( {where: 'model=?', bind: 'test' } ).subscribe( (res: _META_LIST_RESPONSE) => {
-            console.log('this.meta.list::anonymous', res );
+            //console.log('this.meta.list::anonymous', res );
             if(res.data.total == 0 ) this.success( '0 data for anonymous', res  );
             else this.error( res, '0 data for anonymous');
         }, err => {
-            console.log('this.meta.list::anonymous');
+            //console.log('this.meta.list::anonymous');
             this.error( err );
         });
 
@@ -419,7 +419,7 @@ export class TestAll {
             // this.meta.data( res.data.meta.idx ).subscribe( ( res: _META_DATA_RESPONSE ) => {
             //     this.error( res );
             // }, err => {
-            //     console.log('this.meta.data::error', err);
+            //     //console.log('this.meta.data::error', err);
             //     this.success('route-does-not-exists', err);
             // });
 
@@ -443,20 +443,20 @@ export class TestAll {
         let meta_query: _LIST = <_LIST>{};
         //query is empty
         this.meta.list().subscribe( (res: _META_LIST_RESPONSE) => {
-            console.log('this.meta.list::empty', res);
+            //console.log('this.meta.list::empty', res);
             this.error( res );
         }, err => {
-            console.log('this.meta.list::empty');
+            //console.log('this.meta.list::empty');
             this.success('required-variable-is-missing where', err );
         });
 
         //error since binding is missing
         meta_query['where'] = 'model=? AND model_idx=?';
         this.meta.list( meta_query ).subscribe( ( res: _META_LIST_RESPONSE) => {
-            console.log('this.meta.list::where', res );
+            //console.log('this.meta.list::where', res );
             this.error( res );
         }, err => {
-            console.log('this.meta.list::where');
+            //console.log('this.meta.list::where');
             this.success('binding is missing', err );
         });
 
@@ -464,10 +464,10 @@ export class TestAll {
         //search test1,1
         meta_query['bind'] = 'test1,1';
         this.meta.list( meta_query ).subscribe( (res: _META_LIST_RESPONSE) => {
-            console.log('this.meta.list::where&bind', res );
+            //console.log('this.meta.list::where&bind', res );
             this.success('meta.list test1,1', res );
         }, err => {
-            console.log('this.meta.list::where&bind');
+            //console.log('this.meta.list::where&bind');
             this.error( err );
         });
 
@@ -476,10 +476,10 @@ export class TestAll {
         meta_query['where'] = 'model LIKE ? AND model_idx=?';
         meta_query['bind'] = '%test%,1';
         this.meta.list( meta_query ).subscribe( (res: _META_LIST_RESPONSE) => {
-            console.log('this.meta.list::%test%', res );
+            //console.log('this.meta.list::%test%', res );
             this.success('meta.list test1,1', res );
         }, err => {
-            console.log('this.meta.list::%test%');
+            //console.log('this.meta.list::%test%');
             this.error( err );
         });
 
@@ -487,45 +487,45 @@ export class TestAll {
 
 
     testPostConfigLogout() {
-        console.log("testPostConfigLogout");
+        //console.log("testPostConfigLogout");
         let id = 'postConfig-test-create' + (new Date).getMinutes() + Math.round( ( Math.random() * 100000) );
         let req: _DELETE_REQUEST = {
             id: id
         };
         this.postConfig.delete( req ).subscribe( (res: _DELETE_RESPONSE ) => {
-            console.log( "testPostConfigLogout::postConfig.delete::res ",  res );
+            //console.log( "testPostConfigLogout::postConfig.delete::res ",  res );
             this.error(res);
         }, err => {
-            console.log( "testPostConfigLogout::postConfig.delete::err ", err );
+            //console.log( "testPostConfigLogout::postConfig.delete::err ", err );
             this.success('required-variable-is-missing session_id', this.getErrorString(err));
         });
     }
 
     testPostConfigRandomUserLoggedIn() {
-        console.log("testPostConfigLoggedIn");
+        //console.log("testPostConfigLoggedIn");
         let id = 'postConfig-test-create' + (new Date).getMinutes() + Math.round( ( Math.random() * 100000) );
         let req: _DELETE_REQUEST = {
           id: id
         };
         this.postConfig.delete( req ).subscribe( (res: _DELETE_RESPONSE ) => {
-            console.log( "testPostConfigLoggedIn::postConfig.delete::res ",  res );
+            //console.log( "testPostConfigLoggedIn::postConfig.delete::res ",  res );
             this.error(res);
         }, err => {
-            console.log( "testPostConfigLoggedIn::postConfig.delete::err ", err );
+            //console.log( "testPostConfigLoggedIn::postConfig.delete::err ", err );
             this.success('admin-permission-required', this.getErrorString(err));
         });
     }
 
     testPostConfigUserLoggedInByAdmin() {
         //check first if configdata exist. delete if exist or create if not
-        console.log("testPostConfigUserLoggedInByAdmin");
+        //console.log("testPostConfigUserLoggedInByAdmin");
         this.postConfigForTest = 'postConfig-test-create' + (new Date).getMinutes() + Math.round( ( Math.random() * 100000) );
 
         this.postConfig.create().subscribe( (res: _CONFIG_RESPONSE)=> {
-            console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::empty::res" , res);
+            //console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::empty::res" , res);
             this.error(res, "this must be error. id is required")
         }, err => {
-            console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::empty::err" , err);
+            //console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::empty::err" , err);
             this.success("required id is missing " + this.getErrorString(err));
         });
 
@@ -536,13 +536,13 @@ export class TestAll {
         };
         let config_idx;
         this.postConfig.create( config_req ).subscribe( (res: _CONFIG_RESPONSE)=> {
-            console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::res" , res);
+            //console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::res" , res);
             if( res.code == 0) {
                 this.success("post config created ", res);
                 config_idx = res['data']['idx'];
 
                 this.postConfig.data( this.postConfigForTest ).subscribe( (res: _CONFIG_RESPONSE) => {
-                    console.log( "testPostConfigUserLoggedInByAdmin::postConfig.data::res ",  res );
+                    //console.log( "testPostConfigUserLoggedInByAdmin::postConfig.data::res ",  res );
                     if( res.data.config.idx && res.data.config.idx == config_idx) {
                         this.success("get post config data by id ", res);
                     }
@@ -550,7 +550,7 @@ export class TestAll {
                         this.error(res, "this should have the same post config " + res.data.config.idx );
                     }
                 }, err => {
-                    console.log( "testPostConfigUserLoggedInByAdmin::postConfig.data::err ",  err );
+                    //console.log( "testPostConfigUserLoggedInByAdmin::postConfig.data::err ",  err );
                     this.error(err, 'error get postConfig' + config_idx);
                 });
 
@@ -559,7 +559,7 @@ export class TestAll {
                 this.error( res, "this must should be code 0" )
             }
         }, err => {
-            console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::err" , err);
+            //console.log("testPostConfigUserLoggedInByAdmin::postConfig.create::err" , err);
             this.error(err);
         });
 
@@ -568,9 +568,9 @@ export class TestAll {
             id: this.postConfigForTest
         };
         this.postConfig.delete( req ).subscribe( (res: _DELETE_RESPONSE ) => {
-            console.log( "testPostConfigUserLoggedInByAdmin::postConfig.delete::res ",  res );
+            //console.log( "testPostConfigUserLoggedInByAdmin::postConfig.delete::res ",  res );
         }, err => {
-            console.log( "testPostConfigUserLoggedInByAdmin::postConfig.delete::err ", err );
+            //console.log( "testPostConfigUserLoggedInByAdmin::postConfig.delete::err ", err );
         });
     }
 
