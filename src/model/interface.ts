@@ -603,6 +603,12 @@ export interface _META_LIST_RESPONSE extends _RESPONSE {
         page: number;
         limit: number;
     }
-};
+}
+
+export interface _META_CONFIG_RESPONSE extends _RESPONSE {
+    data: {
+        config: _META_ARRAY
+    }
+}
 
 
