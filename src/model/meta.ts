@@ -14,8 +14,6 @@ export class Meta extends Base {
 
     config(): Observable<any> {
         let req = {
-            model: 'config',
-            code: 'config',
             route: this.taxonomy + '.config'
         };
         return this.post( req );
