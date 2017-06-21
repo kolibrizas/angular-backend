@@ -32,7 +32,7 @@ export class Api {
     }
     getBackendUrl() {
         if ( window['url_backend_api'] !== void 0 ) return window['url_backend_api'];
-        else return "http://backend.sonub.com/index.php";
+        else return "";
     }
 
     /**
