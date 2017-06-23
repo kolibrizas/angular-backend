@@ -68,7 +68,8 @@ export class User extends Base {
     }
     register( req: _USER_CREATE ) : Observable<_USER_CREATE_RESPONSE> {
         if ( req.id === void 0 || ! req.id ) return this.error( -4291, 'user-id-is-required-for-register' );
-        if ( req.password === void 0 || req.password.length < 5 ) return this.error( -4292, 'password-is-required-and-must-be-at-least-5-characters-long-for-register' );
+        if ( req.password === void 0  || ! req.password ) return this.error( -4292, 'password-is-required-for-register' );
+        //if ( req.password === void 0 || req.password.length < 5 ) return this.error( -4292, 'password-is-required-and-must-be-at-least-5-characters-long-for-register' );
         req.route = 'register';
         return this.post( req )
         .map( ( res: any ) => {
