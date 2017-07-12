@@ -12,10 +12,11 @@ export class Meta extends Base {
         super( http, 'meta' );
     }
 
-    config(): Observable<any> {
+    config( name?: string ): Observable<any> {
         let req = {
-            route: this.taxonomy + '.config'
+            route: this.taxonomy + '.config',
         };
+        if ( name ) req['name'] = name;
         return this.post( req );
     }
 }
