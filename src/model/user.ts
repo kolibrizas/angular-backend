@@ -79,7 +79,7 @@ export class User extends Base {
         // user.register( ... ) . subscribe( ( re: _USER_CREATE_RESPONSE) => {} )
     }
 
-    edit( req: _USER_EDIT ) : Observable<_USER_EDIT_RESPONSE> {
+    edit( req: _USER_EDIT ): Observable<_USER_EDIT_RESPONSE> {
       //console.log('edit::req', req);
         if ( this.logged == false ) return this.error( -421, 'login-first-before-edit');
         // if ( req['id'] !== void 0 ) return this.error( -422, 'id-has-passed-over-form-submission--user-cannot-edit-id') );
@@ -92,7 +92,7 @@ export class User extends Base {
             });
     }
 
-    login( req: _USER_LOGIN ) : Observable<_USER_LOGIN_RESPONSE> {
+    login( req: _USER_LOGIN ): Observable<_USER_LOGIN_RESPONSE> {
         req.route = 'login';
         return this.post( req )
             .map( (res: any) => {
@@ -101,7 +101,7 @@ export class User extends Base {
             });
     }
 
-    logout() : Observable<_USER_LOGOUT_RESPONSE>  {
+    logout(): Observable<_USER_LOGOUT_RESPONSE>  {
         let req: _USER_LOGOUT = {
             route: 'logout'
         };
@@ -120,11 +120,10 @@ export class User extends Base {
         });
     }
 
-    updatePassword( req: _USER_PASSWORD_CHANGE_BY_ADMIN ) : Observable<_USER_PASSWORD_CHANGE_RESPONSE> {
+    adminChangeUserPassword( req: _USER_PASSWORD_CHANGE_BY_ADMIN ) : Observable<_USER_PASSWORD_CHANGE_RESPONSE> {
         req.route = 'admin_change_user_password';
         return this.post( req )
             .map( (res: any) => {
-                this.deleteSessionInfo();
                 return res;
             });
     }
