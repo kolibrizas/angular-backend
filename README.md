@@ -67,7 +67,7 @@ app.component.ts)
 
 ````
 
-# Sample components based on Angular Backnend
+# Sample components based on Angular Backend
 
 See [Angular Backend Components](https://github.com/thruthesky/angular-backend-components) for code samples of Angular Backend.
 
